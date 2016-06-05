@@ -1,0 +1,8 @@
+{
+  "name": "bitcoin-price-alert-backend",
+  "main": "index.js",
+  "dependencies": {
+    "async": "^2.0.0-rc.5",
+    "request": "^2.72.0"
+  }
+}
