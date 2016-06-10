@@ -2,7 +2,7 @@ var async = require("async"),
   request = require('request'),
   config = require('./config.json');
 
-
+var prevTimestamp;
 // the 'handler' that lambda calls to execute our code
 exports.handler = function(event, context) {
 
@@ -26,6 +26,13 @@ exports.handler = function(event, context) {
     },
 
     function(callback) {
+
+      // Convert the datetime to the unix timestamp
+      data.timestamp = (new Date(data.timestamp)).getTime();
+      if(prevTimestamp == data.timestamp)
+        return;
+      else
+        prevTimestamp = data.timestamp;
 
       // Index the data into Appbase
       request({
